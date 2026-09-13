@@ -12,20 +12,20 @@ from typing import Dict, Any
 
 TOOLS_SCHEMA = [
     # Tool 1: Đã được định nghĩa mẫu sẵn cho Học viên tham khảo
-    {
-        "name": "academic_query",
-        "description": "Tra cứu hồ sơ và thông tin học vụ của sinh viên VinUni bằng mã sinh viên.",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "student_id": {
-                    "type": "string",
-                    "description": "Mã sinh viên cần tra cứu (ví dụ: 'SV2026001')"
-                }
-            },
-            "required": ["student_id"]
-        }
+{
+  "name": "academic_query",
+  "description": "Tra cứu hồ sơ và thông tin học vụ của sinh viên VinUni bằng mã sinh viên.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "student_id": {
+        "type": "string",
+        "description": "Mã sinh viên cần tra cứu (ví dụ: 'SV2026001')"
+      }
     },
+    "required": ["student_id"]
+  }
+}, 
     
     # --------------------------------------------------------------------------
     # TODO 1.2: HỌC VIÊN HOÀN THIỆN TOOL SCHEMA CHO 'schedule_appointment'
@@ -43,9 +43,22 @@ TOOLS_SCHEMA = [
         "parameters": {
             "type": "object",
             "properties": {
+                
                 # TODO 1.2: Khai báo các thuộc tính tham số cho Tool tại đây...
+                "student_id": {
+                    "type": "string",
+                    "description": "Mã sinh viên cần đặt lịch (ví dụ: 'SV2026001')"
+                },
+                "datetime_str": {
+                    "type": "string",
+                    "description": "Thời gian hẹn (ví dụ: '14:00 15/09/2026')"
+                },
+                "advisor_name": {
+                    "type": "string",
+                    "description": "Tên cố vấn học tập"
+                }
             },
-            "required": [] # TODO 1.2: Khai báo danh sách các trường bắt buộc tại đây...
+            "required": ["student_id", "datetime_str"] # TODO 1.2: Khai báo danh sách các trường bắt buộc tại đây...
         }
     }
 ]

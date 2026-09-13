@@ -39,7 +39,19 @@ class MCPAcademicServer:
         # 3. Đóng gói phản hồi và trả về Dict theo đúng chuẩn giao thức MCP JSON-RPC 2.0:
         #    - Các trường bắt buộc: "jsonrpc": "2.0", "server": self.server_name, "tool": tool_name, "result": content
         # --------------------------------------------------------------------------
-        return {}
+        # Bước 1: Gọi dispatch_tool_call để thực thi tool
+        result_json_str = dispatch_tool_call(tool_name, arguments)
+        
+        # Bước 2: Chuyển đổi JSON string thành Dictionary
+        result_content = json.loads(result_json_str)
+        
+        # Bước 3: Đóng gói phản hồi theo chuẩn MCP JSON-RPC 2.0
+        return {
+            "jsonrpc": "2.0",
+            "server": self.server_name,
+            "tool": tool_name,
+            "result": result_content
+        }
 
 
 if __name__ == "__main__":
